@@ -26,6 +26,7 @@ wss.on('connection', function(ws) {
   });
 
   ws.on('message', function(data) {
+      data = JSON.parse(data);
       if (data.type == "read") {
         ws.send(JSON.stringify(products));
       }
