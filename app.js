@@ -11,7 +11,8 @@ server.listen(port);
 
 var wss = new WebSocketServer({server: server});
 
-console.log('websocket server created');
+var productJson = JSON.stringify(products);
+
 
 wss.on('connection', function(ws) {
   //var id = setInterval(function() {
@@ -28,7 +29,7 @@ wss.on('connection', function(ws) {
   ws.on('message', function(data) {
       data = JSON.parse(data);
       if (data.type == "read") {
-        ws.send(JSON.stringify(products));
+        ws.send(productJson);
       }
   });
 
